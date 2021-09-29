@@ -20,7 +20,7 @@ namespace ConsoleApp_ADO.Net
                 Console.WriteLine($"Connecting to Database: '{DatabaseName}'.\nPlease wait...");
             }
 
-            string connectionStr = $@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog={DatabaseName};Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionStr = $@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog={DatabaseName};Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             try
             {
                 using(SqlConnection connection = new SqlConnection(connectionStr))
@@ -40,9 +40,11 @@ namespace ConsoleApp_ADO.Net
                         }
                     }
 
+                    // When applying 'Using' with SqlConnection/SqlCommand
+                    // We dont neen to use .Close/Dispose
                     // Close and Dispose Connection
-                    connection.Close();
-                    connection.Dispose();
+                    // connection.Close();
+                    // connection.Dispose();
                 }
             }
             catch (Exception e){
